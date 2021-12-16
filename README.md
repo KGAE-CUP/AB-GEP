@@ -5,4 +5,4 @@ Run 'AvgEXP3/src/New_gep_greedy1/Fitness_test.java' to run 24 SR benchmarks and 
 # PostProcessing
 ## Box_Plot
 Run 'postprocess/box_plot.py/' to get the box plot figures
-![image](https://github.com/KGAE-CUP/AB-GEP/blob/main/imgs/box%20plot/Figure_1.pdf)
+![image](https://github.com/LuoYuanzhen/SRNet/blob/master/IMG/kkk0_curves_elite%5B0%5D.png)
