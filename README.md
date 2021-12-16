@@ -4,4 +4,4 @@ AB-GEP is a symbolic regression (SR) method based on adversarial bandit techniqu
 Run 'AvgEXP3/src/New_gep_greedy1/Fitness_test.java' to run 24 SR benchmarks and 8 real-world benchmarks in 'datasets/' 30 times. The optimal result in all independent runs is shown in 'results/rmse/'.
 ## Get Experimental Figures
 Run 'postprocess/box_plot.py/' to get the box plot figures
-![image](https://github.com/LuoYuanzhen/SRNet/blob/master/IMG/kkk0_curves_elite%5B0%5D.png)
+![image](https://github.com/KGAE-CUP/AB-GEP/blob/main/results/results_png/box_plot1.png)
