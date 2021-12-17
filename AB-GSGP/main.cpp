@@ -1,21 +1,3 @@
-/*  Copyright Mauro Castelli
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
-
-//!  \file           GP.cc
-//! \brief           file containing the main with the genetic programming algorithm
-//! \date            created on 01/09/2016
 
 #include "GP.h"
 #include <algorithm>
@@ -50,21 +32,21 @@ int my_run(int argc, const char **argv,int k){
 	
 	
 	 
-	double space_reward[16];//¼ÇÂ¼×Ó¿Õ¼äµÄ½±ÀøÖµ 
-	int space_number = sizeof(space_reward) / sizeof(space_reward[0]);//×Ó¿Õ¼äµÄ´óĞ¡ 
+	double space_reward[16];//è®°å½•å­ç©ºé—´çš„å¥–åŠ±å€¼ 
+	int space_number = sizeof(space_reward) / sizeof(space_reward[0]);//å­ç©ºé—´çš„å¤§å° 
 	for(int i=0;i<16;i++)
 	{
-		space_reward[i]=0;//½±ÀøÖµ³õÊ¼»¯Îª0 
+		space_reward[i]=0;//å¥–åŠ±å€¼åˆå§‹åŒ–ä¸º0 
 	 } 
-	 bool selectornot=true;//±ê¼ÇÊÇ·ñÒªÑ¡×Ó¿Õ¼ä
-	 double yita=0;//Ñ§Ï°ÂÊ 
+	 bool selectornot=true;//æ ‡è®°æ˜¯å¦è¦é€‰å­ç©ºé—´
+	 double yita=0;//å­¦ä¹ ç‡ 
 	 double total_space_reward=0;
-	 double random_number[10];//Ëæ»úÊı£¬Ä£ÄâÑ¡Ôñ¸ÅÂÊ 
+	 double random_number[10];//éšæœºæ•°ï¼Œæ¨¡æ‹Ÿé€‰æ‹©æ¦‚ç‡ 
 	 double random_gailv=0;
 	 double space_possibility[16];
 	 	for(int i=0;i<16;i++)
 	{
-		space_possibility[i]=0;//×Ó¿Õ¼äÑ¡Ôñ¸ÅÂÊ³õÊ¼»¯Îª0 
+		space_possibility[i]=0;//å­ç©ºé—´é€‰æ‹©æ¦‚ç‡åˆå§‹åŒ–ä¸º0 
 	 } 
 	 int best_space_id =0;
 	 
@@ -88,14 +70,14 @@ int my_run(int argc, const char **argv,int k){
     ostringstream str2;
     
     
-    double space_histort_reward[16];//¼ÇÂ¼×Ó¿Õ¼äµÄ×îÓÅ¸öÌå
+    double space_histort_reward[16];//è®°å½•å­ç©ºé—´çš„æœ€ä¼˜ä¸ªä½“
     for(int j=0;j<16;j++)
     {
         space_histort_reward[j]=numeric_limits<double>::max();
     }
     
 	 
-	map<int,string> tem_map;//´æ·Å¹ı¶Émap £¨2£¬a£©£¨3£¬b£© 
+	map<int,string> tem_map;//å­˜æ”¾è¿‡æ¸¡map ï¼ˆ2ï¼Œaï¼‰ï¼ˆ3ï¼Œbï¼‰ 
     tem_map[2]="a";
     tem_map[3]="b";
     tem_map[4]="c";
@@ -119,7 +101,7 @@ int my_run(int argc, const char **argv,int k){
     
    // string space_div[2];
     int count=0;
-    	//Õâ±ßÒªĞ´Ò»¸ömap±£´æ×Ó¿Õ¼äidºÍĞÔ×´µÄÓ³Éä  1£¨0£¬aa) (1, ab)
+    	//è¿™è¾¹è¦å†™ä¸€ä¸ªmapä¿å­˜å­ç©ºé—´idå’Œæ€§çŠ¶çš„æ˜ å°„  1ï¼ˆ0ï¼Œaa) (1, ab)
 			for(int i=2;i<6;i++)
 			{
 				//s1 << i;
@@ -137,20 +119,20 @@ int my_run(int argc, const char **argv,int k){
 			}
 			
 			//return 0;
-			//¼ÇÂ¼×Ó¿Õ¼äµÄid¶Ô²»¶Ô 
+			//è®°å½•å­ç©ºé—´çš„idå¯¹ä¸å¯¹ 
 			map<int, string>::iterator iter;
 			ofstream space("space.txt",ios::out);
 			 for(iter = mymap.begin(); iter != mymap.end(); iter++) {
         space << iter->first << " : " << iter->second<< endl;
     }
 			
-    double historybest_train=numeric_limits<double>::max();//ÀúÊ·×îÓÅ¸öÌå 
-    double historybest_test=numeric_limits<double>::max();//ÀúÊ·×îÓÅ¸öÌå 
+    double historybest_train=numeric_limits<double>::max();//å†å²æœ€ä¼˜ä¸ªä½“ 
+    double historybest_test=numeric_limits<double>::max();//å†å²æœ€ä¼˜ä¸ªä½“ 
 
     // name of the file with training instances 
-    char path_in[50]="/data1/users/Teachers/luq/GSGP/airfoiltrain.txt";//Êı¾İ¼¯Â·¾¶ 
+    char path_in[50]="/data1/users/Teachers/luq/GSGP/airfoiltrain.txt";//æ•°æ®é›†è·¯å¾„ 
     // name of the file with test instances
-    char path_test[50]="/data1/users/Teachers/luq/GSGP/airfoiltest.txt";//Êı¾İ¼¯Â·¾¶ 
+    char path_test[50]="/data1/users/Teachers/luq/GSGP/airfoiltest.txt";//æ•°æ®é›†è·¯å¾„ 
    	for (int i=1; i<argc-1; i++) {
         if(strncmp(argv[i],"-train_file",11) == 0) {
             strcat(path_in,argv[++i]);
@@ -223,14 +205,14 @@ int my_run(int argc, const char **argv,int k){
     
 		// reading training and test files
 		read_input_data(path_in,path_test);
-		// creation of terminal and functional symbols,´´½¨·ûºÅ¼¯ºÏ 
+		// creation of terminal and functional symbols,åˆ›å»ºç¬¦å·é›†åˆ 
 		create_T_F();
 		
-		//ÕâÀïÉú³ÉÒ»¸ö¹«Ê½µÄÊ±ºò¿ÉÒÔÖØ¸´£¬È»ºó¼ÆËãÒ»¸ö×îºÃµÄ×Ó¿Õ¼ä 
-		//individualsÊÇ¸öÊı×é 
+		//è¿™é‡Œç”Ÿæˆä¸€ä¸ªå…¬å¼çš„æ—¶å€™å¯ä»¥é‡å¤ï¼Œç„¶åè®¡ç®—ä¸€ä¸ªæœ€å¥½çš„å­ç©ºé—´ 
+		//individualsæ˜¯ä¸ªæ•°ç»„ 
 		  
 		// initialization of the population
-		create_population((population **)&p, config.init_type);	//Éú³ÉÒ»¸öÖÖÈº 
+		create_population((population **)&p, config.init_type);	//ç”Ÿæˆä¸€ä¸ªç§ç¾¤ 
 		
 		
 		// evaluation of the individuals in the initial population
@@ -264,8 +246,8 @@ int my_run(int argc, const char **argv,int k){
 		cout<<(p->individuals[p->index_best])->children[1]->root->name<<" "<<c<<endl;
 		
 	//	update_tables_copy();
-		//Õâ±ßÊÇ¿ÉÒÔµÃµ½ÄÇ¸ö×îÓÅ¸öÌåµÄ±í´ïĞÔ×´µÄ£¬Ò²¾ÍÊÇËµ×îÓÅ×Ó¿Õ¼ä 
-		//¿ªÊ¼ÖØĞÂÉú³ÉÒ»¸öÖÖÈº£¬Õâ¸öÖÖÈºÊÇÔÚÉÏÃæÕâ¸ö×Ó¿Õ¼äµÄ 
+		//è¿™è¾¹æ˜¯å¯ä»¥å¾—åˆ°é‚£ä¸ªæœ€ä¼˜ä¸ªä½“çš„è¡¨è¾¾æ€§çŠ¶çš„ï¼Œä¹Ÿå°±æ˜¯è¯´æœ€ä¼˜å­ç©ºé—´ 
+		//å¼€å§‹é‡æ–°ç”Ÿæˆä¸€ä¸ªç§ç¾¤ï¼Œè¿™ä¸ªç§ç¾¤æ˜¯åœ¨ä¸Šé¢è¿™ä¸ªå­ç©ºé—´çš„ 
 	
 	//	create_population_copy((population **)&p_copy, config.init_type,a,b);
 	//		evaluate((population**)&p_copy);
@@ -290,11 +272,11 @@ int my_run(int argc, const char **argv,int k){
 		
 		
 		
-		//P_copyÊÇÎÒµÄÖÖÈº 
+		//P_copyæ˜¯æˆ‘çš„ç§ç¾¤ 
 		
 		
 		
-		//ÏÖÔÚ¿ªÊ¼¾Í½øÈëÕıÊ½µÄAB-GSGP£¬ÏÖÔÚµÄÖÖÈº¶¼ÊÇÔÚ³õÊ¼»¯ÖĞ×îÓÅµÄÖÖÈº ***** 
+		//ç°åœ¨å¼€å§‹å°±è¿›å…¥æ­£å¼çš„AB-GSGPï¼Œç°åœ¨çš„ç§ç¾¤éƒ½æ˜¯åœ¨åˆå§‹åŒ–ä¸­æœ€ä¼˜çš„ç§ç¾¤ ***** 
 	
 		// main GP cycle
 		for(int num_gen=0; num_gen<config.max_number_generations; num_gen++){
@@ -312,18 +294,18 @@ int my_run(int argc, const char **argv,int k){
 			
 			
 			
-			//´ÓÕâ±ß¿ªÊ¼Ñ¡Ôñ×Ó¿Õ¼ä£¬µÚÒ»´Î²»ÓÃÑ¡
+			//ä»è¿™è¾¹å¼€å§‹é€‰æ‹©å­ç©ºé—´ï¼Œç¬¬ä¸€æ¬¡ä¸ç”¨é€‰
 			 if(selectornot==true)
 			 {
-			 	//½øÀ´Ñ¡×Ó¿Õ¼ä 
-			 	//1.¼ÆËãÑ§Ï°ÂÊyita
+			 	//è¿›æ¥é€‰å­ç©ºé—´ 
+			 	//1.è®¡ç®—å­¦ä¹ ç‡yita
 				 yita= sqrt((log(space_number)+(double)(num_gen+1)*(double)num_gen)/(2*(double)(num_gen+1)*(double)space_number));
-				 //2.¼ÆËãÃ¿¸ö×Ó¿Õ¼ä±»Ñ¡ÔñµÄ½±ÀøÖµ
+				 //2.è®¡ç®—æ¯ä¸ªå­ç©ºé—´è¢«é€‰æ‹©çš„å¥–åŠ±å€¼
 				 for(int e=0;e<space_number;e++)
 				 {
 				 	total_space_reward = total_space_reward + pow(2.7182,yita*space_reward[e]);
 				  } 
-				  //3.¼ÆËãÑ¡ÔñÄÄ¸ö×Ó¿Õ¼ä 
+				  //3.è®¡ç®—é€‰æ‹©å“ªä¸ªå­ç©ºé—´ 
 				//  srand((unsigned)time(NULL));
 				  
 				  for(int f=0;f<10;f++)
@@ -331,12 +313,12 @@ int my_run(int argc, const char **argv,int k){
 				  	random_number[f]=rand() / double(RAND_MAX);
 				   } 
 		          
-                  random_gailv = random_number[4];//Õâ¸ö¾ÍÊÇÎÒµÃµ½µÄËæ»úÊı£¬ÒÔÕâ¸öÊıÎª»ù´¡È¥Ñ¡Ôñ×Ó¿Õ¼ä
+                  random_gailv = random_number[4];//è¿™ä¸ªå°±æ˜¯æˆ‘å¾—åˆ°çš„éšæœºæ•°ï¼Œä»¥è¿™ä¸ªæ•°ä¸ºåŸºç¡€å»é€‰æ‹©å­ç©ºé—´
 				  
-				  //¿ªÊ¼Ä£ÄâÑ¡Ôñ 
+				  //å¼€å§‹æ¨¡æ‹Ÿé€‰æ‹© 
 				  for(int t=0;t<space_number;t++)
 				  {
-				  	space_possibility[t]=pow(2.7182,yita*space_reward[t]) / total_space_reward; //Ã¿¸ö×Ó¿Õ¼ä±»Ñ¡ÔñµÄ¸ÅÂÊ 
+				  	space_possibility[t]=pow(2.7182,yita*space_reward[t]) / total_space_reward; //æ¯ä¸ªå­ç©ºé—´è¢«é€‰æ‹©çš„æ¦‚ç‡ 
 				  	if(select_first==1)
 				  	{
 				  		if(0<=random_gailv&&random_gailv<space_possibility[t])
@@ -361,8 +343,8 @@ int my_run(int argc, const char **argv,int k){
 				  }
              
 				  
-				  //µ½ÕâÀïÎªÖ¹£¬×îÓÅµÄ×Ó¿Õ¼äÒÑ¾­Ñ¡Ôñ³öÀ´ÁË £¨id) 
-				  //ÏÈ°ÑidÈ¡³öÀ´ 
+				  //åˆ°è¿™é‡Œä¸ºæ­¢ï¼Œæœ€ä¼˜çš„å­ç©ºé—´å·²ç»é€‰æ‹©å‡ºæ¥äº† ï¼ˆid) 
+				  //å…ˆæŠŠidå–å‡ºæ¥ 
 				  
 //						map<int, string[2]>::iterator iter2;
 //							 for(iter2 = mymap.begin(); iter2 != mymap.end(); iter2++) {
@@ -385,7 +367,7 @@ int my_run(int argc, const char **argv,int k){
                      cout<<"space_reward:"<<space_reward[best_space_id]<<endl;
                      cout<<"select_possibility:"<<space_possibility[best_space_id]<<endl; 
                      cout<<"best_space_id:"<<best_space_id<<endl;
-                     tem_space_per=mymap[best_space_id];//È¡³öÀ´Õâ¸ö×Ö·û´®£¬Ò²¾ÍÊÇstring£¬ÀàËÆÓÚaa
+                     tem_space_per=mymap[best_space_id];//å–å‡ºæ¥è¿™ä¸ªå­—ç¬¦ä¸²ï¼Œä¹Ÿå°±æ˜¯stringï¼Œç±»ä¼¼äºaa
                      total_space_reward=0;
 					// tem_space_per.substr(0, 1);
 					 
@@ -419,7 +401,7 @@ int my_run(int argc, const char **argv,int k){
     }
 		
 				  //update_tables_copy();
-				  //½ÓÏÂÀ´¾ÍÊÇÌø×ªµ½Õâ¸öÑ¡ÔñµÄ×Ó¿Õ¼ä 
+				  //æ¥ä¸‹æ¥å°±æ˜¯è·³è½¬åˆ°è¿™ä¸ªé€‰æ‹©çš„å­ç©ºé—´ 
 				  for(int u=0;u<config.population_size;u++)
 				  {
              if((p->individuals[u])->root->id>=2&&(p->individuals[u])->root->id<=5&&(p->individuals[u])->children[0]->root->id>=2&&(p->individuals[u])->children[0]->root->id<=5)
@@ -434,11 +416,11 @@ int my_run(int argc, const char **argv,int k){
              }
 				  	
 				  }
-				  //ÊÍ·Å×ÊÔ´£¬Çå¿Õ 
+				  //é‡Šæ”¾èµ„æºï¼Œæ¸…ç©º 
 				  //st1.str("");
 				 // st2.str("");
 				  
-				  //Ìø×ªÍê±ÏÖ®ºó...,ÈÃÎÒÏëÏë 
+				  //è·³è½¬å®Œæ¯•ä¹‹å...,è®©æˆ‘æƒ³æƒ³ 
 				  //evaluate((population**)&p_copy);
 		// writing the  training fitness of the best individual on the file fitnesstrain.txt
 		//fitness_train<<Myevaluate(p_copy->individuals[p_copy->index_best])<<endl;
@@ -492,8 +474,8 @@ int my_run(int argc, const char **argv,int k){
 			
 			
 			
-			//ÔÚÕâÀï¸üĞÂ×Ó¿Õ¼äµÄ½±ÀøÖµ
-			//Ê×ÏÈÒªÕÒµ½ÄÇ¸ö×îÓÅµÄ×Ó¿Õ¼ä 
+			//åœ¨è¿™é‡Œæ›´æ–°å­ç©ºé—´çš„å¥–åŠ±å€¼
+			//é¦–å…ˆè¦æ‰¾åˆ°é‚£ä¸ªæœ€ä¼˜çš„å­ç©ºé—´ 
 			// best_first_id=(p->individuals[p->index_best])->root->id;
 		    // best_second_id=(p->individuals[p->index_best])->children[0]->root->id;
 		     
@@ -507,14 +489,14 @@ int my_run(int argc, const char **argv,int k){
 		//	 for(iter3 = mymap.begin(); iter3 != mymap.end(); iter3++) {
      //   if((iter3->second).compare(best_first_per+best_second_per))
      //   {
-       //   	final_space_id=iter3->first;//×îÓÅ×Ó¿Õ¼äµÄid 
+       //   	final_space_id=iter3->first;//æœ€ä¼˜å­ç©ºé—´çš„id 
       //    	break;
 	//	}
 //	}
 //	    str1.str("");
 //	    str2.str("");
 	    
-	    //È»ºó¾ÍÊÇ¸üĞÂ½±ÀøÖµÁË 
+	    //ç„¶åå°±æ˜¯æ›´æ–°å¥–åŠ±å€¼äº† 
 			for(int h=0;h<space_number;h++)
 			{
 				if(h==best_space_id)
