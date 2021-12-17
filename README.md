@@ -24,7 +24,7 @@ Run 'postprocess/convergence_curve.m' to get the convergence cruve figures.
 ![image](https://github.com/KGAE-CUP/AB-GEP/blob/main/results/results_png/convergence2.png)
 ![image](https://github.com/KGAE-CUP/AB-GEP/blob/main/results/results_png/convergence3.png)
 
-# Related Work
+# Related  Work
 Previous basic work is available：
 
 Congwen Xu, Qiang Lu, Jake Luo, and Zhiguang Wang. 2021. Adversarial bandit gene expression programming for symbolic regression. In <i>Proceedings of the Genetic and Evolutionary Computation Conference Companion</i> (<i>GECCO '21</i>). Association for Computing Machinery, New York, NY, USA, 269–270. DOI:https://doi.org/10.1145/3449726.3459499
