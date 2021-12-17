@@ -1,21 +1,3 @@
-/*  Copyright Mauro Castelli
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
-
-//!  \file            GP.h
-//! \brief            file containing the definition of the classes used to represent a symbol, a node of the tree, a population of individuals and definition of the functions
-//! \date            created on 01/09/2016
 
 #include <iostream>
 #include <fstream>
@@ -1129,12 +1111,12 @@ void create_full_pop(population** p){
     }
 }
 
-//´´½¨Ò»¸öÖÖÈº 
+//åˆ›å»ºä¸€ä¸ªç§ç¾¤ 
 void create_ramped_pop(population **p){
 	
 	int sub_pop;
 	int r;	
-	int i=(*p)->num_ind;//num_indµÄ³õÊ¼ÖµÊÇ0£¬i=0 
+	int i=(*p)->num_ind;//num_indçš„åˆå§‹å€¼æ˜¯0ï¼Œi=0 
 	int min_depth;
 	if(config.zero_depth==0){
 		sub_pop=(config.population_size-(*p)->num_ind)/config.max_depth_creation; // sub_pop=100/5=20 
@@ -1147,7 +1129,7 @@ void create_ramped_pop(population **p){
 //		min_depth=0;
 	}
 	int j=config.max_depth_creation; //j=5
-	while(j>=min_depth){ //³õÊ¼µÄÊ±ºòmin_depth=1 
+	while(j>=min_depth){ //åˆå§‹çš„æ—¶å€™min_depth=1 
 		if(j<config.max_depth_creation){ //max_depth_creation=5
 			for(int k=0; k<(int)(ceil((double)sub_pop/2)); k++){
 				(*p)->individuals[i]=new node;
@@ -1187,12 +1169,12 @@ void create_ramped_pop(population **p){
     }
 }
 
-//´´½¨Ò»¸öÖÖÈº 
+//åˆ›å»ºä¸€ä¸ªç§ç¾¤ 
 void create_ramped_pop_copy(population **p,int a,int b){
 	
 	int sub_pop;
 	int r;	
-	int i=(*p)->num_ind;//num_indµÄ³õÊ¼ÖµÊÇ0£¬i=0 
+	int i=(*p)->num_ind;//num_indçš„åˆå§‹å€¼æ˜¯0ï¼Œi=0 
 	int min_depth;
 	if(config.zero_depth==0){
 		sub_pop=(config.population_size-(*p)->num_ind)/config.max_depth_creation; // sub_pop=100/5=20 
@@ -1205,7 +1187,7 @@ void create_ramped_pop_copy(population **p,int a,int b){
 //		min_depth=0;
 	}
 	int j=config.max_depth_creation; //j=5
-	while(j>=min_depth){ //³õÊ¼µÄÊ±ºòmin_depth=1 
+	while(j>=min_depth){ //åˆå§‹çš„æ—¶å€™min_depth=1 
 		if(j<config.max_depth_creation){ //max_depth_creation=5
 			for(int k=0; k<(int)(ceil((double)sub_pop/2)); k++){
 				(*p)->individuals[i]=new node;
@@ -1465,7 +1447,7 @@ void create_full_tree(node **el, int depth, node *parent, int max_depth){
 	}
 }
 
-//²ÎÊıindexÓÃÀ´Ö¸¶¨ÊÇÄÄ¸ö·ûºÅ£¬Ò²¾ÍÊÇid£»flagÓÃÀ´Ìø³öÑ­»· 
+//å‚æ•°indexç”¨æ¥æŒ‡å®šæ˜¯å“ªä¸ªç¬¦å·ï¼Œä¹Ÿå°±æ˜¯idï¼›flagç”¨æ¥è·³å‡ºå¾ªç¯ 
 void create_full_tree_copy(node **el, int depth, node *parent, int max_depth,int a,int b, int flag){
 	int index=0;
 	if(flag==1)
@@ -1476,7 +1458,7 @@ void create_full_tree_copy(node **el, int depth, node *parent, int max_depth,int
 	{
 		index=b;
 	}
-	if(flag<=2)//Ö»È¡Ç°ÈıÎ» 
+	if(flag<=2)//åªå–å‰ä¸‰ä½ 
 	{
 			if(depth==0 && depth<max_depth){
 		(*el)->root=symbols[index];
